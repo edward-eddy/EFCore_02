@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Demo.Contexts;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 
@@ -25,7 +26,27 @@ namespace Demo
             // Code 
             #endregion
 
+            // CRUD Operation
+            // Create - Read - Update- Delete
 
+            //AppDbContext context = new AppDbContext();
+
+            //try
+            //{
+            //   Code
+            //}
+            //finally
+            //{
+            //   context.Dispose();
+            //}
+
+
+            //using (AppDbContext context = new AppDbContext())
+            //{
+            //  // CRUD
+            // }
+
+            using AppDbContext context = new AppDbContext();
 
         }
     }
