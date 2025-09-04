@@ -97,7 +97,22 @@ namespace Demo
             //context.SaveChanges(); 
             #endregion
 
+            #region Read - Select
+            // Read - Select
 
+            //var Result = context.Employees.Where(E => E.Id == 40).FirstOrDefault();
+            //var Result = context.Employees.FirstOrDefault(E => E.Id == 40);
+
+            //var Result = context.Employees.Select(E => E.Name);
+
+            //foreach (var item in Result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            //Console.WriteLine(Result ?. Name);
+            //Console.WriteLine(Result ?. Id); 
+            #endregion
 
         }
     }
