@@ -22,6 +22,23 @@ namespace Demo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Demo.Entities.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Courses");
+                });
+
             modelBuilder.Entity("Demo.Entities.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -30,7 +47,7 @@ namespace Demo.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 100L, 100);
 
-                    b.Property<int>("EmpId")
+                    b.Property<int>("ManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -41,7 +58,7 @@ namespace Demo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpId")
+                    b.HasIndex("ManagerId")
                         .IsUnique();
 
                     b.ToTable("Department");
@@ -81,11 +98,49 @@ namespace Demo.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("Demo.Entities.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Demo.Entities.StudentCourse", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Grade")
+                        .HasColumnType("float");
+
+                    b.HasKey("StudentId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("StudentCourse");
+                });
+
             modelBuilder.Entity("Demo.Entities.Department", b =>
                 {
                     b.HasOne("Demo.Entities.Employee", "Manager")
                         .WithOne("Department")
-                        .HasForeignKey("Demo.Entities.Department", "EmpId")
+                        .HasForeignKey("Demo.Entities.Department", "ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -101,6 +156,26 @@ namespace Demo.Migrations
                     b.Navigation("WorkFor");
                 });
 
+            modelBuilder.Entity("Demo.Entities.StudentCourse", b =>
+                {
+                    b.HasOne("Demo.Entities.Course", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Demo.Entities.Student", null)
+                        .WithMany("Students")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Demo.Entities.Course", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
             modelBuilder.Entity("Demo.Entities.Department", b =>
                 {
                     b.Navigation("Employees");
@@ -110,6 +185,11 @@ namespace Demo.Migrations
                 {
                     b.Navigation("Department")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Demo.Entities.Student", b =>
+                {
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

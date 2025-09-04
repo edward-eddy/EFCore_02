@@ -13,11 +13,12 @@ namespace Demo.Entities
         public string Name { get; set; }
 
         #region One To One
-        //public int ManagerId { get; set; } // FK
+        public int ManagerId { get; set; } // FK
 
         //[ForeignKey("Manager")]
         //[ForeignKey(nameof(Manager))]
-        public int EmpId { get; set; } // FK
+        //public int EmpId { get; set; } // FK
+
         public Employee Manager { get; set; } // Navigational Property 
         #endregion
 

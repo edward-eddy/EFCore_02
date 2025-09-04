@@ -1,6 +1,7 @@
 ﻿using Demo.Configurations;
 using Demo.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 using System.Reflection;
 
 namespace Demo.Contexts
@@ -21,16 +22,28 @@ namespace Demo.Contexts
             //            .WithOne(D => D.Manager)
             //            .HasForeignKey<Department>(D => D.EmpId);
 
-            modelBuilder.Entity<Department>()
-                        .HasOne(D => D.Manager)
-                        .WithOne(E => E.Department)
-                        .HasForeignKey<Department>(D => D.EmpId);
+            //modelBuilder.Entity<Department>()
+            //            .HasOne(D => D.Manager)
+            //            .WithOne(E => E.Department)
+            //            .HasForeignKey<Department>(D => D.EmpId);
             #endregion
 
-            modelBuilder.Entity<Department>()
-                        .HasMany(D => D.Employees)
-                        .WithOne(E => E.WorkFor)
-                        .HasForeignKey(E => E.WorkForId);
+            #region OneToMany
+            //modelBuilder.Entity<Department>()
+            //            .HasMany(D => D.Employees)
+            //            .WithOne(E => E.WorkFor)
+            //            .HasForeignKey(E => E.WorkForId); 
+            #endregion
+            modelBuilder.Entity<StudentCourse>().HasKey(SC => new { SC.StudentId, SC.CourseId });
+
+            //modelBuilder.Entity<Student>()
+            //            .HasMany(S => S.Students)
+            //            .WithMany(SC => SC.Students);
+
+            //modelBuilder.Entity<Course>()
+            //            .HasMany(S => S.Courses)
+            //            .WithMany(SC => SC.Courses);
+
 
             base.OnModelCreating(modelBuilder);
         }
@@ -41,5 +54,7 @@ namespace Demo.Contexts
         }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }

@@ -20,8 +20,8 @@ namespace Demo.Entities
         //[InverseProperty(nameof(Department.Manager))]
         public Department Department { get; set; }
         #endregion
-        public int? WorkForId { get; set; }
-        //[InverseProperty(nameof(Department.Employees))]
+        //public int? WorkForId { get; set; }
+        [InverseProperty(nameof(Department.Employees))]
         public Department? WorkFor { get; set; }
     }
 }
