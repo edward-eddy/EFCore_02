@@ -114,6 +114,25 @@ namespace Demo
             //Console.WriteLine(Result ?. Id); 
             #endregion
 
+            #region Update
+            // Update
+
+            //var Result = context.Employees.FirstOrDefault(E => E.Id == 40);
+
+            //Console.WriteLine(context.Entry(Result).State);
+
+            //Result.Name = "Omar Mohamed";
+            ////Console.WriteLine(context.Entry(Result).State);
+
+            ////context.Update(Result);
+            //Console.WriteLine(context.Entry(Result).State);
+
+            //context.SaveChanges(); 
+            //Console.WriteLine(context.Entry(Result).State);
+            #endregion
+
+
+
         }
     }
 }
