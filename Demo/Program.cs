@@ -131,6 +131,20 @@ namespace Demo
             //Console.WriteLine(context.Entry(Result).State);
             #endregion
 
+            #region Delete
+            // Delete
+
+            //var Result = context.Employees.FirstOrDefault(E => E.Id == 30);
+
+            //Console.WriteLine(context.Entry(Result).State); // Unchanged
+
+            //context.Employees.Remove(Result);
+            //Console.WriteLine(context.Entry(Result).State); // Deleted
+
+            //context.SaveChanges();
+            //Console.WriteLine(context.Entry(Result).State); // Detached 
+            #endregion
+
 
 
         }
