@@ -52,6 +52,8 @@ namespace Demo
             using AppDbContext context = new AppDbContext();
 
 
+            #region CRUD Operations
+
             #region Create - Insert
             // Create - Insert
 
@@ -143,6 +145,8 @@ namespace Demo
 
             //context.SaveChanges();
             //Console.WriteLine(context.Entry(Result).State); // Detached 
+            #endregion 
+
             #endregion
 
 
