@@ -16,7 +16,12 @@ namespace Demo.Entities
         public int? Age { get; set; }
         public string Address { get; set; }
 
+        #region One To One
         //[InverseProperty(nameof(Department.Manager))]
-        public Department? Department { get; set; }
+        public Department Department { get; set; }
+        #endregion
+        public int? WorkForId { get; set; }
+        //[InverseProperty(nameof(Department.Employees))]
+        public Department? WorkFor { get; set; }
     }
 }
